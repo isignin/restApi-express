@@ -1,6 +1,6 @@
 {
     "env": {
-        "MONGO_USER" : "username",
-        "MONGO_PW" : "password"
+        "MONGO_USER" : "api_user",
+        "MONGO_PW" : "us3rap1"
     }
 }

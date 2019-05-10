@@ -73,6 +73,12 @@ router.post('/',(req, res, next) => {
                 error: err
             });
         });
+    } else {
+        const msg = "Missing one or more required field(s)";
+        console.log(msg);
+        res.status(500).json({
+            message: msg
+        });
     }
 });
 

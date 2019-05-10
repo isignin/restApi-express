@@ -1,7 +1,7 @@
 {
   "name": "restapi",
   "version": "1.0.0",
-  "description": "Boiler plate for Restful API using node.js",
+  "description": "Common Restful APIs using node.js",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",

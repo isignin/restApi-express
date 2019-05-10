@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const userRoutes = require('./api/routes/users');
+const loginRoutes = require('./api/routes/login');
 
 mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PW + '@localhost:27017/myapp',{ useNewUrlParser: true });
 
@@ -25,7 +26,8 @@ app.use((req, res, next) => {
 });
 
 // Api routes defined here
-app.use('/users', userRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/login', loginRoutes);
 
 // at this point, route is not valid and hence an error
 app.use((req,res,next)=>{

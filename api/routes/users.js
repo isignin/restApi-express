@@ -50,10 +50,18 @@ router.get('/:userId',(req, res, next) => {
 });
 
 router.post('/',(req, res, next) => {
+    // confirm that user typed same password twice
+    if (req.body.password !== req.body.passwordConf) {
+        const err = new Error('Passwords do not match.');
+        err.status = 400;
+        res.send("passwords dont match");
+        return next(err);
+    };
+    
     if (req.body.username &&
         req.body.email &&
         req.body.name &&
-        req.body.password) {
+        req.body.password ) {
 
         const user = new User({
             _id: new mongoose.Types.ObjectId(),

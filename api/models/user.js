@@ -24,8 +24,35 @@ const userSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    passwordConf: {
+        type: String,
+        required: true,
     }
 });
+
+//authenticate input against database
+userSchema.statics.authenticate = function (email, password, callback) {
+    User.findOne({ email: email })
+    .exec()
+    .then(user => {
+        if (user) {
+            bcrypt.compare(password, user.password, function (err, result) {
+            if (result === true) {
+                return callback(null, user);
+            } else {
+                return callback();
+            }
+            });
+        } else {
+            return callback();
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        return callback(err);
+    });
+}
 
 //hashing a password before saving it to the database
 userSchema.pre('save', function (next) {
@@ -38,5 +65,5 @@ userSchema.pre('save', function (next) {
       next();
     })
   });
-
-module.exports = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
+module.exports = User;

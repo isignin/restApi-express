@@ -50,24 +50,30 @@ router.get('/:userId',(req, res, next) => {
 });
 
 router.post('/',(req, res, next) => {
-    const user = new User({
-        _id: new mongoose.Types.ObjectId(),
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
-    });
-    console.log(req.body.name);
-    user.save()
-    .then(result => {
-        console.log(result);
-        res.status(201).json(user);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({
-            error: err
+    if (req.body.username &&
+        req.body.email &&
+        req.body.name &&
+        req.body.password) {
+
+        const user = new User({
+            _id: new mongoose.Types.ObjectId(),
+            username: req.body.username,
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
         });
-    });
+        user.save()
+        .then(result => {
+            console.log(result);
+            res.status(201).json(user);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    }
 });
 
 router.patch('/:userId',(req, res, next) => {

@@ -1,4 +1,4 @@
-# inventory-manager using Vue.js
+# Restful API using Express.js and Mongodb
 
 ## Project setup
 ```

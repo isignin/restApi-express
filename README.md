@@ -1,11 +1,18 @@
-# restApi-express
-Restful API using express.js and node.js
+# inventory-manager using Vue.js
 
-**Dependencies
-Mongodb
-
-**Instructions
-
+## Project setup
+```
 npm install
+```
 
-npm run start
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+###Dependencies
+```
+mongodb
+mongoose
+express.js
+```

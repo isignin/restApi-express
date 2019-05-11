@@ -1,2 +1,11 @@
 # restApi-express
-Boilerplate for a Restful API using node.js
+Restful API using express.js and node.js
+
+**Dependencies
+Mongodb
+
+**Instructions
+
+npm install
+
+npm run start

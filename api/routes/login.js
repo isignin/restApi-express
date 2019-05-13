@@ -20,7 +20,12 @@ router.post('/',(req, res, next) => {
                 return next(err);
             } else {
                 console.log("User found...");
-                res.status(200).json(user);
+                const response = {
+                    name: user.name,
+                    email: user.email,
+                    id: user._id
+                }
+                res.status(200).json(response);
                 // req.session.userId = user._id;
                 // return res.redirect('/profile');
             }

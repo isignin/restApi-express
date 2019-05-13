@@ -9,9 +9,18 @@ router.get('/',(req, res, next) => {
     User.find()
         .exec()
         .then(docs => {
-            console.log(docs);
+            const response = {
+                count: docs.length,
+                users: docs.map(doc => {
+                    return {
+                        name: doc.name,
+                        email: doc.email,
+                        id: doc._id
+                    }
+                })
+            }
             if (docs.length > 0){
-              res.status(200).json(docs);
+              res.status(200).json(response);
             } else {
                 res.status(200).json({
                     message: 'No records found in DB'
@@ -31,9 +40,15 @@ router.get('/:userId',(req, res, next) => {
     User.findById(id)
         .exec()
         .then(doc => {
-            console.log(doc)
+            const response = {
+                user: {
+                        name: doc.name,
+                        email: doc.email,
+                        id: doc._id
+                    }
+            }
             if (doc) {
-                res.status(200).json(doc);
+                res.status(200).json(response);
             } else {
                 res.status(404).json({
                     message: "No valid entry found for User ID"

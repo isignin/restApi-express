@@ -10,6 +10,9 @@ const loginRoutes = require('./api/routes/login');
 
 mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PW + '@localhost:27017/myapp',{ useNewUrlParser: true });
 
+// Fix deprecationWarning for ensureIndex.
+mongoose.set('useCreateIndex', true);
+
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());

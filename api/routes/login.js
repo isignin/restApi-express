@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
 
@@ -24,10 +25,19 @@ router.post('/',(req, res, next) => {
                     name: user.name,
                     email: user.email,
                     id: user._id
+                };
+                //jwt.sign is synchronous, hence use try..catch
+                try {
+                    const jwt_token = jwt.sign({user: response}, process.env.JWT_KEY, { expiresIn: "1hr"});
+                    response.token = jwt_token;
+                    res.status(200).json(response);
+                } 
+                catch (err) {
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
                 }
-                res.status(200).json(response);
-                // req.session.userId = user._id;
-                // return res.redirect('/profile');
             }
         });
     } else {

@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
     },
     passwordConf: {
         type: String,
-        required: true,
+        required: false,
     }
 });
 

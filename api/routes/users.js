@@ -65,6 +65,7 @@ router.get('/:userId',(req, res, next) => {
 });
 
 router.post('/',(req, res, next) => {
+    console.log(req);
     // confirm that user typed same password twice
     if (req.body.password !== req.body.passwordConf) {
         const err = new Error('Passwords do not match.');

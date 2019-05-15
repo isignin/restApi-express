@@ -66,7 +66,6 @@ exports.show = (req, res, next) => {
 };
 
 exports.signup = (req, res, next) => {
-    console.log(req);
     // confirm that user typed same password twice
     if (req.body.password !== req.body.passwordConf) {
         const err = new Error('Passwords do not match.');

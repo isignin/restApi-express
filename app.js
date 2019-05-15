@@ -6,10 +6,11 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const config = require('./config');
 
 const userRoutes = require('./api/routes/users');
 
-mongoose.connect('mongodb://' + process.env.MONGO_USER + ':' + process.env.MONGO_PW + '@localhost:27017/myapp',{ useNewUrlParser: true });
+mongoose.connect('mongodb://' + config.MONGO_USER + ':' + config.MONGO_PW + '@localhost:27017/myapp',{ useNewUrlParser: true });
 
 // Fix deprecationWarning for ensureIndex.
 mongoose.set('useCreateIndex', true);

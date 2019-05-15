@@ -1,6 +1,7 @@
 
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const config = require('../../config');
 const User = require('../models/user');
 
 exports.index = (req, res, next) => {
@@ -125,7 +126,7 @@ exports.login = (req, res, next) => {
                 };
                 //jwt.sign is synchronous, hence use try..catch
                 try {
-                    const jwt_token = jwt.sign({user: response}, process.env.JWT_KEY, { expiresIn: "1hr"});
+                    const jwt_token = jwt.sign({user: response}, config.JWT_KEY, { expiresIn: "1hr"});
                     response.token = jwt_token;
                     res.status(200).json(response);
                 } 

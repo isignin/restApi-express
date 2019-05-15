@@ -1,10 +1,11 @@
+// /routes/api/users.js
+"use strict";
+
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 
-const User = require('../models/user');
-const users_controller = require('../controllers/usersController');
+const User = require('../../models/user');
+const users_controller = require('../../controllers/usersController');
 
 router.get('/', users_controller.index);
 

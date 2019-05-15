@@ -1,7 +1,10 @@
+// /controllers/userController.js
+
+"use strict";
 
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const config = require('../../config');
+const config = require('../config');
 const User = require('../models/user');
 
 exports.index = (req, res, next) => {

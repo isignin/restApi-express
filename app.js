@@ -1,23 +1,31 @@
 "use strict";
 
 const express = require('express');
-const app = express();
-
+const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const config = require('./config');
 
-const userRoutes = require('./api/routes/users');
+const app = express();
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+//connect to database
 mongoose.connect('mongodb://' + config.MONGO_USER + ':' + config.MONGO_PW + '@localhost:27017/myapp',{ useNewUrlParser: true });
-
 // Fix deprecationWarning for ensureIndex.
 mongoose.set('useCreateIndex', true);
+
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var apiRouter = require('./routes/api'); 
 
 // Handle CORS error by allowing
 app.use((req, res, next) => {
@@ -30,8 +38,10 @@ app.use((req, res, next) => {
    next();
 });
 
-// Api routes defined here
-app.use('/api/users', userRoutes);
+// Routes defined here
+app.use('/api', apiRouter);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 // at this point, route is not valid and hence an error
 app.use((req,res,next)=>{

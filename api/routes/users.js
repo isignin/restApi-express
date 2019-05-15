@@ -64,7 +64,7 @@ router.get('/:userId',(req, res, next) => {
         });
 });
 
-router.post('/',(req, res, next) => {
+router.post('/signup',(req, res, next) => {
     console.log(req);
     // confirm that user typed same password twice
     if (req.body.password !== req.body.passwordConf) {

@@ -15,4 +15,5 @@ npm run start
 mongodb
 mongoose
 express.js
+JsonWebToken
 ```

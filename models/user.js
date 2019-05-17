@@ -22,10 +22,6 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-    },
-    passwordConf: {
-        type: String,
-        required: false,
     }
 });
 

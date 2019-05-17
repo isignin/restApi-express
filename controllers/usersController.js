@@ -78,23 +78,31 @@ exports.signup = (req, res, next) => {
         req.body.name &&
         req.body.password ) {
 
-        const user = new User({
-            _id: new mongoose.Types.ObjectId(),
-            name: req.body.name,
-            email: req.body.email,
-            password: req.body.password
-        });
-        user.save()
-        .then(result => {
-            console.log(result);
-            res.status(201).json(user);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json({
-                error: err
-            });
-        });
+            return User.findOne({email: req.body.email})
+            .then(userfound => {
+                if (userfound) {
+                    console.log('Email already exist');
+                    res.status(500).json({
+                        error: 'Email already exist'
+                    });
+                }
+                const user = new User({
+                    _id: new mongoose.Types.ObjectId(),
+                    email: req.body.email,
+                    name: req.body.name,
+                    password: req.body.password
+                });
+                return user.save();
+            })
+            .then(result => {
+                console.log(result);
+                res.status(201).json({...result._doc, password: "*******"});
+            })
+            .catch(err => {
+                console.log(err);
+                throw err;
+            })
+
     } else {
         const msg = "Missing one or more required field(s)";
         console.log(msg);

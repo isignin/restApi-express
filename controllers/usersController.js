@@ -74,14 +74,12 @@ exports.signup = (req, res, next) => {
         return next(err);
     };
     
-    if (req.body.username &&
-        req.body.email &&
+    if (req.body.email &&
         req.body.name &&
         req.body.password ) {
 
         const user = new User({
             _id: new mongoose.Types.ObjectId(),
-            username: req.body.username,
             name: req.body.name,
             email: req.body.email,
             password: req.body.password

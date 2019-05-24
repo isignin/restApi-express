@@ -14,7 +14,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 //connect to database
-mongoose.connect(`mongodb://${config.MONGO_USER}:${config.MONGO_PW}@localhost:27017/${config.MONGO_DB}`,{ useNewUrlParser: true });
+mongoose.connect(`mongodb://${config.mongo_user}:${config.mongo_pwd}@localhost:27017/${config.mongo_db}`,{ useNewUrlParser: true });
 // Fix deprecationWarning for ensureIndex.
 mongoose.set('useCreateIndex', true);
 

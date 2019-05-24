@@ -1,9 +1,9 @@
 //config.js
 
 module.exports = {
-    "MONGO_USER" : "api_user",
-    "MONGO_PW" : "us3rap1",
-    "JWT_KEY" : "secretkey",
-    "MONGO_DB": "myapp"
-
+    port: process.env.PORT,
+    mongo_db: process.env.MONGO_DB,
+    mongo_pwd: process.env.MONGO_PWD,
+    mongo_user: process.env.MONGO_USER,
+    jwt_key: process.env.JWT_KEY 
 };
